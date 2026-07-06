@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { createContext, useContext } from "react";
 
-export const AuthContext = createContext(null)
+const AuthContext = createContext(null)
 
 function AuthProvider({ children }) {
     const [user, setUser] = useState(localStorage.getItem("currentLoggedInUser") ? { email: localStorage.getItem("currentLoggedInUser") } : null)
@@ -41,3 +41,8 @@ function AuthProvider({ children }) {
 }
 
 export default AuthProvider
+
+export function useAuth(){
+    const context = useContext(AuthContext)
+    return context
+}
